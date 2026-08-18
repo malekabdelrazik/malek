@@ -1,78 +1,814 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    <title>This is my page - malek
-    </title>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cutting Edge | Future Forward</title>
+    <style>
+        :root {
+            --bg: #061a2c;
+            --bg-soft: #0d2946;
+            --panel: rgba(13, 41, 70, 0.78);
+            --panel-strong: rgba(8, 26, 43, 0.9);
+            --primary: #4fc3ff;
+            --primary-dark: #1d7fe8;
+            --primary-soft: #dff5ff;
+            --accent: #8ae7ff;
+            --text: #ebf7ff;
+            --muted: #b8d7ee;
+            --line: rgba(143, 211, 255, 0.18);
+            --shadow: 0 20px 60px rgba(3, 11, 20, 0.45);
+        }
 
-<body style="margin: 0; display: flex; flex-direction: column; gap: 20px; min-height: 100vh; background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; font-family: Arial, sans-serif;">
-    <header
-        style="background-color: rgb(0, 145, 255); color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQEKVbgA2WgXuw/company-logo_200_200/B4DZwtIYa9KkAI-/0/1770283698330/cuttingedge1_logo?e=2147483647&v=beta&t=sXTlOXNlTaSLQp03KiqPwAWYKZa6rpGC8D6bektLQ5o"
-                alt="Company logo"
-                style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-            <h1
-                style="margin: 0; font-size: 36px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                Cutting Edge
-            </h1>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <a href="#"
-                style="color: white; text-decoration: underline; text-decoration-color: #ffd54f; text-decoration-thickness: 2px; font-weight: 600;">link
-                1</a>
-            <a href="#"
-                style="color: white; text-decoration: underline; text-decoration-color: #ffd54f; text-decoration-thickness: 2px; font-weight: 600;">link
-                2</a>
-            <button type="button"
-                style="padding: 6px 10px; font-size: 14px; width: fit-content; border: none; border-radius: 6px; background-color: #ffd54f; color: #0d47a1; font-weight: 700;">Sign
-                In</button>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(79, 195, 255, 0.25), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(29, 127, 232, 0.18), transparent 30%),
+                linear-gradient(120deg, #051827 0%, #0b2240 30%, #0d2d4d 100%);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(5, 21, 34, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 18px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 28px rgba(79, 195, 255, 0.45);
+            font-weight: 900;
+            color: #022a4d;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .nav a {
+            transition: color 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 0.9rem 1.5rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #021d30;
+            box-shadow: 0 14px 30px rgba(79, 195, 255, 0.35);
+        }
+
+        .button-secondary {
+            background: transparent;
+            border-color: rgba(173, 224, 255, 0.3);
+            color: var(--text);
+        }
+
+        .hero {
+            padding: 90px 0 40px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 38px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: rgba(79, 195, 255, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(138, 231, 255, 0.35);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 5rem);
+            line-height: 1.02;
+            margin: 22px 0 18px;
+            letter-spacing: -0.05em;
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+            line-height: 1.75;
+            color: var(--muted);
+            max-width: 600px;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 28px;
+            margin-bottom: 24px;
+        }
+
+        .proof-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 28px;
+            padding: 0;
+            list-style: none;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .proof-list li::before {
+            content: "✓";
+            color: var(--accent);
+            margin-right: 10px;
+            font-weight: 700;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 560px;
+        }
+
+        .hero-card {
+            position: absolute;
+            background: linear-gradient(160deg, rgba(17, 61, 100, 0.82), rgba(10, 22, 35, 0.92));
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .dashboard {
+            inset: 40px 10px 20px 40px;
+            padding: 22px;
+        }
+
+        .dashboard-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .signal {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            font-size: 0.9rem;
+        }
+
+        .signal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #58e3a8;
+            box-shadow: 0 0 18px rgba(88, 227, 168, 0.9);
+        }
+
+        .chart {
+            height: 180px;
+            border-radius: 18px;
+            background:
+                linear-gradient(to top, rgba(79, 195, 255, 0.1), rgba(79, 195, 255, 0)),
+                linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            position: relative;
+            border: 1px solid rgba(148, 218, 255, 0.15);
+            overflow: hidden;
+        }
+
+        .chart svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .stat-grid {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .mini-stat {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(148, 218, 255, 0.12);
+            border-radius: 18px;
+            padding: 16px 14px;
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .mini-stat span {
+            color: var(--muted);
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .floating-panel {
+            right: 0;
+            bottom: 0;
+            width: 240px;
+            padding: 20px;
+        }
+
+        .floating-panel h3 {
+            margin: 0 0 6px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .floating-panel strong {
+            font-size: 2.2rem;
+            line-height: 1.1;
+        }
+
+        .floating-panel .progress {
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            overflow: hidden;
+            margin-top: 18px;
+        }
+
+        .floating-panel .progress span {
+            display: block;
+            width: 72%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #7ef5ff);
+            border-radius: inherit;
+        }
+
+        .partners {
+            padding: 8px 0 20px;
+            color: rgba(184, 215, 238, 0.75);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+        }
+
+        .partner-row {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .partner-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 74px;
+            border: 1px solid rgba(143, 211, 255, 0.12);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.02);
+            color: rgba(235,247,255,0.7);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .metrics {
+            padding: 30px 0 40px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .metric-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            padding: 26px 22px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+        }
+
+        .metric-box strong {
+            display: block;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+        }
+
+        .metric-box span {
+            color: var(--muted);
+        }
+
+        .features {
+            padding: 36px 0 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 12px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 28px 22px;
+        }
+
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(79,195,255,0.25), rgba(29,127,232,0.35));
+            display: grid;
+            place-items: center;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .showcase {
+            padding: 18px 0 70px;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: stretch;
+            margin-top: 10px;
+        }
+
+        .showcase-card {
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .showcase-image {
+            min-height: 330px;
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .showcase-content {
+            padding: 30px 26px;
+        }
+
+        .showcase-content h3 {
+            margin: 0 0 12px;
+            font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+            letter-spacing: -0.04em;
+        }
+
+        .showcase-content p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin: 0 0 18px;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .list li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .cta-banner {
+            padding: 30px 0 90px;
+        }
+
+        .cta-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            background: linear-gradient(135deg, rgba(79,195,255,0.16), rgba(29,127,232,0.18));
+            border: 1px solid rgba(138, 231, 255, 0.28);
+            border-radius: 28px;
+            padding: 34px 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-box h3 {
+            margin: 0 0 8px;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            letter-spacing: -0.04em;
+        }
+
+        .cta-box p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 24px 0 44px;
+            color: var(--muted);
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .hero-inner,
+            .showcase-grid,
+            .features-grid,
+            .metrics-grid,
+            .partner-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-inner,
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .cta-box,
+            .footer-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 60px;
+            }
+
+            .metrics-grid,
+            .features-grid,
+            .partner-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                position: relative;
+                inset: auto;
+            }
+
+            .hero-visual {
+                display: grid;
+                gap: 18px;
+                min-height: auto;
+            }
+
+            .dashboard {
+                inset: auto;
+                padding: 18px;
+            }
+
+            .floating-panel {
+                position: relative;
+                width: 100%;
+                right: auto;
+                bottom: auto;
+            }
+
+            .topbar-inner {
+                flex-wrap: wrap;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand" aria-label="Cutting Edge logo">
+                <div class="brand-mark">CE</div>
+                <span>Cutting Edge</span>
+            </div>
+
+            <nav class="nav" aria-label="Main navigation">
+                <a href="#services">Services</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#results">Results</a>
+                <a href="#insights">Insights</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="button button-secondary" href="#contact">Talk to us</a>
+                <a class="button button-primary" href="#services">Book a demo</a>
+            </div>
         </div>
     </header>
 
-    <div
-        style="background: linear-gradient(135deg, #e3f2fd, #f8fbff); padding: 30px; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); text-align: center;">
-        <h2
-            style="margin: 0 0 10px; color: #0d47a1; font-size: 32px; font-weight: 800; text-shadow: 1px 1px 2px rgba(0,0,0,0.15);">
-            Welcome to Our Website!</h2>
-        <p style="margin: 0 0 20px; font-size: 18px; color: #234; line-height: 1.6;">We’re so glad you’re here. Explore,
-            enjoy, and discover everything we have to offer.</p>
-        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-            <input type="text" placeholder="Search here..."
-                style="padding: 10px 14px; width: 260px; border: 2px solid #90caf9; border-radius: 999px; outline: none; font-size: 15px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);">
-            <button type="button"
-                style="padding: 10px 18px; border: none; border-radius: 999px; background: linear-gradient(135deg, #1976d2, #42a5f5); color: white; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(25,118,210,0.25);">Search</button>
-        </div>
-        <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 12px;">
-            <div style="display: inline-block; text-align: center; background: rgba(255,255,255,0.9); padding: 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=800&q=80" alt="Taekwondo player" style="width: 220px; height: 140px; object-fit: cover; border-radius: 10px;">
-                <div style="margin-top: 8px; color: #0d47a1; font-size: 18px; font-weight: 700;">Taekwondo</div>
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div>
+                    <span class="eyebrow">Future-ready growth</span>
+                    <h1>Build the next edge of your business.</h1>
+                    <p>
+                        Cutting Edge helps teams turn bold ideas into market-moving products,
+                        smarter systems, and standout customer experiences with strategy, design,
+                        and technology built for what’s next.
+                    </p>
+
+                    <div class="cta-row">
+                        <a class="button button-primary" href="#contact">Start your project</a>
+                        <a class="button button-secondary" href="#results">See our work</a>
+                    </div>
+
+                    <ul class="proof-list">
+                        <li>AI-driven innovation</li>
+                        <li>Faster product launches</li>
+                        <li>Enterprise-grade delivery</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual" aria-label="Product dashboard illustration">
+                    <div class="hero-card dashboard">
+                        <div class="dashboard-top">
+                            <span>Performance</span>
+                            <div class="signal"><span class="signal-dot"></span>Live pipeline</div>
+                        </div>
+
+                        <div class="chart">
+                            <svg viewBox="0 0 500 180" preserveAspectRatio="none" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="lineGlow" x1="0" x2="1">
+                                        <stop offset="0%" stop-color="#82e8ff"/>
+                                        <stop offset="100%" stop-color="#1d7fe8"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,120 C50,80, 100,100, 150,68 S260,18, 300,58 S390,92, 500,15 L500,180 L0,180 Z" fill="rgba(125,206,255,0.12)"></path>
+                                <path d="M0,120 C50,80, 100,100, 150,68 S260,18, 300,58 S390,92, 500,15" fill="none" stroke="url(#lineGlow)" stroke-width="6" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+
+                        <div class="stat-grid">
+                            <div class="mini-stat">
+                                <strong>4.8x</strong>
+                                <span>Growth</span>
+                            </div>
+                            <div class="mini-stat">
+                                <strong>91%</strong>
+                                <span>Retention</span>
+                            </div>
+                            <div class="mini-stat">
+                                <strong>24/7</strong>
+                                <span>Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card floating-panel">
+                        <h3>Launch velocity</h3>
+                        <strong>+128%</strong>
+                        <div class="progress"><span></span></div>
+                    </div>
+                </div>
             </div>
-            <button type="button" style="padding: 8px 14px; border: none; border-radius: 999px; background: linear-gradient(135deg, #1976d2, #42a5f5); color: white; font-weight: 700; cursor: pointer;">View More</button>
-        </div>
-        <div style="margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 12px;">
-            <div style="display: inline-block; text-align: center; background: rgba(255,255,255,0.9); padding: 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80" alt="Football player" style="width: 220px; height: 140px; object-fit: cover; border-radius: 10px;">
-                <div style="margin-top: 8px; color: #0d47a1; font-size: 18px; font-weight: 700;">Football</div>
+        </section>
+
+        <section class="partners container" aria-label="Client logos">
+            <div>Trusted by teams moving the future</div>
+            <div class="partner-row">
+                <div class="partner-pill">Nexa</div>
+                <div class="partner-pill">Aether</div>
+                <div class="partner-pill">Vertex</div>
+                <div class="partner-pill">Quantum</div>
+                <div class="partner-pill">Nova</div>
             </div>
-            <button type="button" style="padding: 8px 14px; border: none; border-radius: 999px; background: linear-gradient(135deg, #1976d2, #42a5f5); color: white; font-weight: 700; cursor: pointer;">View More</button>
+        </section>
+
+        <section class="metrics" id="results">
+            <div class="container">
+                <div class="section-label">Impact</div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <strong>180+</strong>
+                        <span>Projects launched worldwide</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>12k</strong>
+                        <span>Users activated in 90 days</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>34%</strong>
+                        <span>Average conversion lift</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>2.4x</strong>
+                        <span>Faster product iteration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="services">
+            <div class="container">
+                <div class="section-label">What we do</div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="icon">✦</div>
+                        <h3>Product Strategy</h3>
+                        <p>We define the roadmap, opportunity, and go-to-market path that keeps teams aligned around growth.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="icon">◎</div>
+                        <h3>AI & Automation</h3>
+                        <p>From workflow optimization to intelligent experiences, we build systems that enhance decision speed and customer value.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="icon">▣</div>
+                        <h3>Design Systems</h3>
+                        <p>We create clean, durable digital experiences that convert attention into trust and momentum into revenue.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase" id="solutions">
+            <div class="container">
+                <div class="section-label">Why teams choose us</div>
+                <div class="showcase-grid">
+                    <div class="showcase-card">
+                        <div class="showcase-image" aria-label="Team collaborating on a project"></div>
+                    </div>
+
+                    <div class="showcase-card showcase-content">
+                        <h3>Built for bold teams and ambitious ideas.</h3>
+                        <p>
+                            We combine strategic clarity with hands-on execution to help founders,
+                            operators, and enterprise teams move from concept to traction without friction.
+                        </p>
+                        <ul class="list">
+                            <li>Cross-functional product squads</li>
+                            <li>Lean delivery with measurable outcomes</li>
+                            <li>Clear communication from strategy to launch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner" id="contact">
+            <div class="container">
+                <div class="cta-box">
+                    <div>
+                        <h3>Let’s build your next breakthrough.</h3>
+                        <p>Turn your vision into a sharper, smarter, faster digital experience.</p>
+                    </div>
+                    <a class="button button-primary" href="mailto:hello@cuttingedge.com">hello@cuttingedge.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-row">
+            <div>© 2026 Cutting Edge</div>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#results">Results</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-    </div>
-
-    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: auto; padding: 0 30px 30px;">
-        <div style="display: inline-block; padding: 8px 14px; border-radius: 999px; background: linear-gradient(135deg, #ffd54f, #ffb300); box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-            <span style="color: #0d47a1; font-size: 18px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Our Products</span>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-            <h1 style="color: #ffffff; font-size: 16px; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">page 1</h1>
-            <a href="#" style="color: #ffffff; text-decoration: none; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">link 1</a>
-            <a href="#" style="color: #ffffff; text-decoration: none; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">link 2</a>
-            <button type="button" style="margin-left: 10px; padding: 8px 14px; border: none; border-radius: 999px; background: linear-gradient(135deg, #ff9800, #ff5722); color: white; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">View All</button>
-        </div>
-    </div>
-
-
-
-
-
+    </footer>
 </body>
+</html>
